@@ -1,0 +1,752 @@
+---
+title: "Copper Regression"
+output:
+   html_notebook: default
+---
+<!-- --- -->
+<!-- title: 'Watershed Regression - Part 1: Linear Mixed Models (adapted to GLS Survival -->
+<!--   Analysis) ' -->
+<!-- author: "Christian Nilsen" -->
+<!-- output: -->
+<!--   html_notebook: -->
+<!--     toc: yes -->
+<!--     highlight: zenburn -->
+<!--     df_print: paged -->
+<!--     fig_caption: yes -->
+<!--   html_document: -->
+<!--     toc: yes -->
+<!--     highlight: zenburn -->
+<!--     df_print: paged -->
+<!--   word_document: -->
+<!--     toc: yes -->
+<!-- --- -->
+# License
+
+Copyright (c) 2020 Geosyntec Consultants, Inc. 
+[Mozilla Public License Version 2.0](https://choosealicense.com/licenses/mpl-2.0/)
+
+
+This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.  
+
+# Introduction 
+
+This notebook uses spatial data, rainfall data, and outfall monitoring data to develop predictive linear regression relationships related to concentrations of total suspended solids (TSS) in urban stormwater.
+
+Although land use is a commonly used predictor for runoff water quality,  recent investigations have found that other landscape and meteorologic variables are more correlated with pollutant concentrations. 
+
+Here, we compare predictive models using remote sensed landscape data, precipitation, and other factors to models relying on land use. 
+
+
+<!-- clear workspace and load libraries. (code not shown in html file )   -->
+```{r knitr_init, cache=FALSE, include=FALSE}
+# load packages
+# 
+#code for word export-------------
+library(officedown)
+library(officer)
+
+fp <- fp_par(
+  text.align = "center",
+  padding.bottom = 20, padding.top = 120,
+  border.bottom = fp_border()
+)
+
+ft <- fp_text(shading.color = "#EFEFEF", bold = TRUE)
+#------------
+#---libraries
+library(car)
+library(caret)
+library(fitdistrplus)
+library(gamlss)
+library(glmmLasso)
+library(ggrepel)
+library(ggthemr)
+library(knitr)
+library(lattice)
+library(lubridate)
+library(magrittr)
+library(MASS)
+library(Metrics)
+library(NADA)
+library(readr)
+library(PerformanceAnalytics)
+library(psych)
+library(scam)
+library(sjPlot)
+library(survival)
+library(texreg)
+library(tidyverse)
+library(visreg)
+
+
+#options --------------
+
+opts_chunk$set(
+  prompt = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+options(scipen = 1, digits = 3)
+
+
+set.seed(50)
+ggthemr("fresh")
+
+```
+
+#  Methods 
+
+## Outfall Monitoring Data
+
+The primary source of measured stormwater data is the S8.D Municipal Stormwater Permit Outfall Data (referred to as the S8 Data in this document) provided by the Washington Department of Ecology (William Hobbs et al. 2015). Special Condition S8.D of the 2007-2012 Phase I Municipal Stormwater Permit required permittees to collect and analyze data to evaluate pollutant loadings of stormwater discharged from different land uses: high density (HD) residential, low density (LD) residential, commercial, and industrial. Phase I Permittees5 collected water quality and flow data, sediment data, and toxicity information from stormwater discharges during storm events.
+
+## Data import and cleaning
+
+The stormwater outfall data is available from Ecology via an open-data api at: https://data.wa.gov/Natural-Resources-Environment/Municipal-Stormwater-Permit-Outfall-Data/d958-q2ci.
+
+A .csv file is saved in ```WatershedRegression/data/S8_data.csv``` Here we import the cleaned dataset. 
+
+```{r}
+#load data
+load("./data/s8_cleaned.rda") 
+
+#load helper functions 
+source("./R/helpers.R")
+#Filter for coc 
+
+coc <- 'Copper - Water - Total'
+units <- 'μg/L'
+df.coc <- dplyr::filter(s8data.wPredictors,parameter == coc)
+
+#get rid of NA columns
+df.coc <- Filter(function(x)!all(is.na(x)), df.coc)
+
+#add a log transformed response column 
+df.coc$logConcentration <- log(df.coc$concentration)
+
+```
+
+Most stormwater studies use land use as the main predictor of pollutant concentrations. 
+
+The data include four land use categories: 
+
+* Industrial (IND)
+* Low density residential (LDR) 
+* High density residential (HDR)
+* Commercial (COM) 
+
+Collected by 6 Agencies: 
+
+* City of Seattle
+* City of Tacoma 
+* King County
+* Pierce County
+* Snohohmish County
+* Port of Tacoma 
+
+(Clark County was not included in this analysis. Port of Seattle, likewise was removed due to the small watershed area used for monitoring). 
+
+## Fit a distribution for parametric models. 
+
+Produce Q-Q plots to aid in distribution selection. 
+
+```{r fig.height=5, fig.width=7}
+#TODO: Add Survival Object for censored data. 
+plot_distributions(coc,df.coc)
+
+```
+
+
+From the above, We will choose the lognormal distribution for fitting. Below in the ```gamlss``` function we will select ```family = LOGNO```.
+
+
+# Parameter Selection 
+
+## Landscape Data
+ 
+For each watershed contained in the S8 dataset, potentially relevant landscape data was extracted from the following sources below: 
+
+| Layer                   | ID          | Source |
+|-------------------------|-------------|---------| 
+|  Particulate Matter 2.5μm |  pm25      |   [van Donkelaar et al. 2018.](https://doi.org/10.7927/H4ZK5DQS)   
+| Imperviousness          | impervious      | TNC Puget Sound land cover
+|Logarithm of Population Density |logPopulation |[CIESIN - Columbia University Gridded Population of the World, Version 4](https://doi.org/10.7927/H49C6VHW)
+|Logarithm of Average Daily Traffic Volume  |logTraffic|[INRIX Traffic](https://inrix.com/products/volume)
+|Percent Tree Cover |  percent_tree_cover      |   NLCD Database  
+
+
+
+First center and scale the landscape predictors. 
+
+```{r}
+# Use the preProcess function from the caret package to generate preprocess elements
+predictors <- 
+    c("impervious",
+      "logTraffic",
+      "percent_tree_cover",
+      "pm25",
+      "population_density"
+    )
+
+scaled_centered <- scale_and_center(df.coc, predictors)
+
+df.scaled <- scaled_centered$scaled
+df.transformed <- scaled_centered$transformed
+```
+
+## View Correlations 
+
+Generate a correlation matrix chart to visualize correlations of the response (log concentration) to predictors. 
+
+```{r}
+#Select data for charting
+df.toChart <- dplyr::select(df.transformed,
+  c(logConcentration,
+    impervious,
+    population_density,
+    logTraffic  ,percent_tree_cover,
+    pm25,
+  )
+)
+lab = coc
+#show kendall correlation coefficients
+chart.Correlation(df.toChart,method="kendall",title=(lab))
+
+```
+
+
+
+Below we plot the predictors against concentration to investigate predictive relationships.We use p-splines here to show fits. 
+
+```{r}
+# pivot for plotting
+landscape_cols <- pivot_longer(
+  df.transformed,
+  c(
+    impervious,
+    population_density,
+    logTraffic,
+    pm25,
+    percent_tree_cover
+  ),
+  names_to = "Predictor",
+  names_repair = "check_unique",
+  values_to = "lsvalue"
+)
+
+# plot data with p splines
+ggplot(landscape_cols, aes(x = lsvalue, y = concentration)) +
+  geom_smooth(method = "scam", formula = y ~ s(x, k = 4, bs = "ps")) +
+  facet_wrap(~Predictor, scales = "free_x") +
+  scale_y_log10() +
+  theme(
+    axis.line = element_line(
+      size = 0.3,
+      linetype = "solid"
+    ), axis.ticks = element_line(size = 0.7),
+    panel.background = element_rect(
+      fill = NA,
+      colour = "black", size = 0, linetype = "solid"
+    )
+  ) +
+  geom_point(aes(color = study_name), fill = NA, alpha = 0.4) +
+  ggtitle(lab)
+
+```
+ 
+## Collinearity 
+
+To address multicolinearity, we calculate the variance inflation factor (VIF) and  remove parameters with with high VIF. 
+
+```{r}
+vif_results <- sort(vif(lm(log(concentration) ~  
+   impervious+ 
+   population_density+ 
+   logTraffic+ 
+   pm25+ 
+    percent_tree_cover,
+     data=df.transformed)))
+(vif_results)
+```
+
+
+All vif values are below 10. We do not need to remove any. 
+
+## Categorical Predictors 
+
+Other predictors to be investigated are: 
+
+* Study ID - Which jurisdiction conducted the study (factor)
+* Season - Season of the year data were collected (1-Winter, 2-Spring, 3-Summer, 4-Fall)
+* Type - Self reported land use type 
+* AMC - Antecedent moisture condition (AMC) - Three day antecedent rainfall depth *(Gray, et al 1982)*.  (1-Dry, 2-Avg, 3 - Wet).  
+
+
+```{r}
+
+# Coerce data to factors.
+factor_cols <- c("season", "study_name", "Location", "type", "AMC")
+df.transformed[factor_cols] <- lapply(df.transformed[factor_cols], factor)
+
+
+factor_cols <- pivot_longer(
+  df.transformed,
+  c(season, AMC, type),
+  names_to = "Predictor",
+  values_to = "factor_value",
+  names_repair = "minimal"
+)
+
+
+# plot the data
+ggplot(factor_cols, aes(x = factor_value, y = concentration)) +
+  geom_boxplot() +
+  facet_wrap(~Predictor, scales = "free_x") +
+  scale_y_log10() +
+  geom_jitter(aes(color = study_name), alpha = 0.4) +
+  ggtitle(lab)
+
+```
+
+## Penalized parameter selection
+
+We employ LASSO (Least Absolute Shrinkage and Selection Operator) regression to select parameters that minimize model complexity.  It uses a loss function and penalty parameter (lambda) to estimate regression coefficients. 
+
+
+We start with all potential predictors and interactions. 
+
+```{r message=FALSE, warning=FALSE}
+#make a formula with all predictors 
+formula.1 <-
+  as.formula(
+    logConcentration ~ logTraffic + impervious + percent_tree_cover + pm25 + population_density
+      + logTraffic:impervious + logTraffic:percent_tree_cover + logTraffic:population_density +
+      logTraffic:pm25 + impervious:percent_tree_cover + impervious:pm25 + impervious:population_density
+      + percent_tree_cover:pm25 + percent_tree_cover:population_density + pm25:population_density
+  )
+# Run the function (can take a while for a lot of parameters)
+param.select.1 <- selectLasso(formula.1, df.transformed)
+
+
+# plot the results
+ggplot(param.select.1) +
+  geom_smooth(aes(x = lambda, y = val, group = predictor), color = "light grey", se = FALSE, size = 0.1) +
+  geom_text_repel(
+    data = param.select.1 %>%
+      filter(lambda == last(lambda)),
+    aes(label = predictor, x = lambda * 0.9, y = val * 1.2), label.size = 0.01
+  ) +
+  theme(legend.position = "none") +
+  geom_hline(yintercept = 0)
+
+# display the last lambda
+kable(param.select.1 %>%
+  filter(lambda == last(lambda)))
+```
+This chart is kind of a mess, but it shows that many predictors quickly go to zero as the loss function increases in penalty. We will remove these and show the predictors that seem to hold up. 
+Make this clearer:
+
+
+```{r}
+
+formula.2 <- (as.formula(logConcentration ~ logTraffic + percent_tree_cover + pm25 + impervious))
+param.select.2 <- selectLasso(formula.2, df.transformed)
+
+ggplot(param.select.2) +
+  geom_smooth(aes(x = lambda, y = val, color = predictor), se = FALSE) +
+  geom_text_repel(
+    data = param.select.2 %>%
+      filter(lambda == last(lambda)),
+    aes(label = predictor, x = lambda * 0.9, y = val * 1.2, color = predictor)
+  ) +
+  geom_hline(yintercept = 0) +
+  theme(legend.position = "none")
+
+kable(param.select.2 %>%
+  filter(lambda == last(lambda)))
+```
+
+# Begin Fitting a model 
+
+Now it is time to begin with model fitting. We use the ```gamlss``` package, an additive univariate regression model that can include non-linear relationships, random effects, and various parametric distributions. 
+
+## Step 1 - Model with no random effects
+
+We begin with our fitting our null hypotheses. We actually have to null hypotheses. 
+
+* H.null.a: There is not a relationship between predictors. 
+* H.null.b: Land use is the best predictor. 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# gamlss does automatic centering and scaling. Abandon the transformed data.
+rm(df.transformed)
+
+# get our non-transformed data frame.
+df.coc <-
+  dplyr::select(
+    df.coc,
+    c(
+      season,
+      impervious,
+      pm25,
+      percent_tree_cover,
+      concentration,
+      logTraffic,
+      nondetect_flag,
+      population_density,
+      study_id,
+      Location,
+      study_name,
+      AMC,
+      type
+    )
+  )
+# coerce factors
+factor_cols <-
+  c(
+    "season",
+    "study_id",
+    "study_name",
+    "Location",
+    "type",
+    "AMC"
+  )
+df.coc[factor_cols] <- lapply(df.coc[factor_cols], factor)
+
+
+# Fit Null Models
+model.nulla <- gamlss(concentration ~ 1, data = df.coc, family = LOGNO)
+model.nullb <- gamlss(concentration ~ type, data = df.coc, family = LOGNO)
+
+# fit linear models
+lm.1 <- gamlss(concentration ~
+logTraffic + pm25 + impervious + population_density + percent_tree_cover, data = df.coc, family = LOGNO)
+lm.2 <- gamlss(concentration ~
+logTraffic + pm25 + percent_tree_cover, data = df.coc, family = LOGNO)
+
+mods.step1 <- list(model.nulla, model.nullb, lm.1, lm.2)
+
+```
+
+### Step 1 Results 
+```{r echo=TRUE}
+##huxtablereg(mods.step1,single.row = T)
+screenreg(mods.step1,single.row=T)
+```
+
+Based on AIC, model 4 seems to be the best model. It outperforms the null models. 
+```{r}
+best.step1 <- mods.step1[[4]]
+```
+
+## Step 2 - Adjust scale parameter
+
+GAMLSS includes a scale parameter `sigma`, which can be used to adjust the distribution standard deviation. Here we try different sigma formulas. 
+
+```{r}
+
+step1.formula <- formula(best.step1)
+
+mod.step2.1 <- gamlss(step1.formula,
+  data = df.coc, family = LOGNO,
+  trace = F,
+  sigma.formula = ~study_id
+)
+
+mod.step2.2 <- gamlss(step1.formula,
+  data = df.coc, family = LOGNO,
+  trace = F,
+  sigma.formula = ~AMC
+)
+mod.step2.3 <- gamlss(step1.formula,
+  data = df.coc, family = LOGNO,
+  trace = F,
+  sigma.formula = ~season
+)
+
+# create list of models. Include the best from the previous step.
+
+mods.step2 <- list(best.step1, mod.step2.1, mod.step2.2, mod.step2.3)
+```
+
+### Step 2 Results 
+```{r}
+# display results 
+screenreg(mods.step2,single.row=T)
+```
+
+Based on AIC, Model 4 from step 2 seems to be the best model. 
+
+```{r}
+best.step2 <- mods.step2[[4]]
+```
+
+## Step 3 - Explore non-linear relationships 
+
+```{r}
+#get the formula 
+step2.formula <- formula(best.step2)
+
+# make new formulas by updating previous steps
+step3.1.formula <- update(step2.formula, . ~ . - logTraffic - pm25 + pbm(logTraffic) + pbm(pm25))
+step3.2.formula <- update(step2.formula, . ~ . - logTraffic + pbm(logTraffic))
+step3.3.formula <- update(step2.formula, . ~ . - pm25 + pbm(pm25))
+step3.4.formula <- update(step2.formula, . ~ . - logTraffic - pm25 + pbm(logTraffic))
+
+# fit models
+mod.step3.1 <- gamlss(
+  step3.1.formula,
+  data = df.coc,
+  family = LOGNO,
+  trace = F,
+  sigma.formula = ~season
+)
+
+mod.step3.2 <- gamlss(
+  step3.2.formula,
+  data = df.coc,
+  family = LOGNO,
+  trace = F,
+  sigma.formula = ~season
+)
+
+mod.step3.3 <- gamlss(
+  step3.3.formula,
+  data = df.coc,
+  family = LOGNO,
+  trace = F,
+  sigma.formula = ~season
+)
+
+mod.step3.4 <- gamlss(
+  step3.4.formula,
+  data = df.coc,
+  family = LOGNO,
+  trace = F,
+  sigma.formula = ~season
+)
+
+
+# make a list of models
+mods.step3 <- list(best.step2, mod.step3.1, mod.step3.2, mod.step3.3, mod.step3.4)
+```
+
+### Step 3 Results 
+```{r}
+# display results
+screenreg(mods.step3, single.row = T)
+```
+Based on AIC, Model 2 from step 3 seems to be the best model. 
+
+```{r}
+best.step3 <- mods.step3[[2]]
+step3.formula <- formula(best.step3)
+
+```
+
+## Step 4 - Select random effects 
+
+Finally, we look at different random effects. To avoid over fitting, we do not use the sigma formulas from step 2 (meaning the fitted standard deviation is the same for all categories)
+ 
+```{r}
+
+formula.step4.1 <- update(step3.formula, . ~ . + random(AMC))
+formula.step4.2 <- update(step3.formula, . ~ . + random(study_id))
+formula.step4.3 <- update(step3.formula, . ~ . + random(season))
+
+
+mod.step4.1 <-
+  gamlss(
+    formula.step4.1,
+    #  sigma.formula = ~season,
+    family = LOGNO,
+    data = df.coc,
+    trace = FALSE
+  )
+
+
+mod.step4.2 <-
+  gamlss(formula.step4.2,
+    #  sigma.formula = ~season,
+    trace = T,
+    data = df.coc,
+    family = LOGNO
+  )
+
+
+mod.step4.3 <- gamlss(formula.step4.3,
+  family = LOGNO,
+  #  sigma.formula = ~season,
+  trace = T,
+  data = df.coc, method = mixed()
+)
+
+
+# make a list
+mods.step4 <- list(best.step3, mod.step4.1, mod.step4.1, mod.step4.2, mod.step4.3)
+```
+
+### Step 4 results 
+```{r}
+#display results 
+screenreg(mods.step4, single.row = T)
+
+```
+
+
+
+
+Model 1 seems the best (same as from step 3). This means we have no random effects. We revert to Model 1. 
+
+```{r}
+best.step4 <- mods.step4[[1]]
+```
+
+## Summary of best bodel from steps 1-4 
+
+```{r}
+#display a summary 
+summary(best.step4)
+```
+
+# Grouped K-Fold Cross validation 
+
+We  use cross-validation with grouped folds to find the best model, and then test that model on a subset of the original data. Since our data is grouped by Location, we assign a fold for each location. 
+
+Split the data into folds by Location. 
+
+```{r}
+folds <-(as.numeric(df.coc$Location))
+(max(folds)) #check number of folds 
+```
+We have 14 folds, one for each location. 
+
+Make a function for cross-validation using the ```gamlssCV``` package. 
+
+```{r message=FALSE, warning=FALSE}
+
+```
+
+Make a list of models to validate, run through the cross-validation function and show the results.  
+
+```{r message=FALSE, warning=FALSE}
+models.to.validate <-
+  list(
+    "nulla" = model.nulla,
+    "nullb" = model.nullb,
+    "step1" = best.step1,
+    "step2" = best.step2,
+    "step3" = best.step3,
+    "step4" = best.step4
+  )
+
+cv.results <- cv.function(models.to.validate)
+
+
+
+
+```
+## Cross validation results 
+
+Show the resulting average AIC from the cross-validation results. 
+
+```{r}
+print(cv.results)
+```
+Seems like our more complicated models may be overfilling the data. 
+The best model is the step 2 resulting model. 
+
+# Results
+
+The best validated model is step 2. Plot the model diagnostics. 
+
+```{r}
+selected_model <- best.step2
+plot(selected_model,summary=T)
+
+```
+
+Plot the predictions. 
+
+
+```{r fig.height=5, fig.width=6}
+term.plot(selected_model,what="mu",rug=F,pages=1,ask=F,partial.resid=T,ylim="free",main=coc)
+```
+
+
+# Hypotheses test results 
+
+1.  Is the land use (nullb) model better than using average concentration (nulla) (i.e. single intercept; slope = 0)?
+
+```{r}
+#use Vuong and Clarke tests 
+VC.test(model.nulla,model.nullb)
+```
+2.  Is the selected model better than the land use only model?
+```{r}
+VC.test(model.nullb,selected_model)
+```
+
+Plot results from the land use model vs. the selected model 
+
+```{r fig.height=5.5, fig.width=8}
+diag.df <- add.fit(selected_model, df.coc)
+
+diag.nullb <- add.fit(model.nullb, df.coc)
+
+ggthemr('fresh', "clean", spacing = 0.8)
+selected_model.fit <- diag.df %>%
+  group_by(study_name, type) %>%
+  summarize(Int = mean(.fit)) %>%
+  add_column(model = "this study")
+#
+null_model.fit <- diag.nullb %>%
+  group_by(study_name, type) %>%
+  summarize(Int = mean(.fit)) %>%
+  add_column(model = "null model")
+
+#
+model.fits <- rbind(selected_model.fit, null_model.fit)
+#
+summary.plot <- ggplot(diag.df, aes(x = logConcentration)) +
+  geom_density(color = "#757575",
+               fill = "#e0e0e0",
+               alpha = 0.8) +
+  geom_vline(
+    data = model.fits,
+    aes(
+      xintercept = Int,
+      group = model,
+      color = model,
+      linetype = (model)
+    ),
+    size = 1,
+    #linetype = "solid",
+    alpha = 0.9
+  ) + legend_bottom() +
+  scale_linetype_manual(
+    name = "Model",
+    breaks = c("null model", "this study"),
+    labels = c("null model", "this study"),
+    values = c('dashed', 'solid')
+  ) + scale_color_manual(
+    values = c("#E84646", "#109B37") ,
+    name = "Model",
+    breaks = c("null model", "this study"),
+    labels = c("null model", "this study")
+  ) +
+  labs(title = coc, subtitle = "Average predicted concentration vs. density plots of observered data") +
+  scale_y_continuous(labels = scales::number_format(accuracy = .1,
+                                                    decimal.mark = '.'))
+
+
+summary.plot +facet_wrap(study_name~type,
+             drop = T,
+             nrow = 4,
+             scales = 'free_y',labeller=labeller(.multi_line = F),dir='v')  #,scales="free")+
+
+
+```
+
+
+*fin* 
