@@ -97,8 +97,8 @@ select_params <- function(df) {
 
 s8data <- all.S8.data %>%
   clean_data() %>%
-  add.antecedant.days() %>%
-  select_params() %>%
-  select_columns()
+  #add.antecedant.days() %>%
+  select_params()
+  #select_columns()
 
 
