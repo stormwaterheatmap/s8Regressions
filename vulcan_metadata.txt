@@ -1,0 +1,55 @@
+File C:/Users/CNilsen/Documents/GitHub/s8Regressions/data-raw/Vulcan_v3_US_annual_1km_total_mn.nc4 (NC_FORMAT_NETCDF4_CLASSIC):
+
+     5 variables (excluding dimension variables):
+        double time_bnds[nv,time]   
+        double carbon_emissions[x,y,time]   
+            cell_methods: time: sum
+            units: Mg km-2 year-1
+            _FillValue: -9999
+            coordinates: lon lat
+            grid_mapping: crs
+            long_name: Metric Tons of Carbon (tC) in Annual CO2 emissions from fossil fuel combustion or cement production, total production sector, mean bound
+        short crs[]   
+            grid_mapping_name: lambert_conformal_conic
+            false_easting: 0
+            false_northing: 0
+            semi_major_axis: 6378137
+            inverse_flattening: 298.257223563
+            long_name: CRS definition
+            longitude_of_central_meridian: -97
+            latitude_of_projection_origin: 40
+            standard_parallel: 33
+             standard_parallel: 45
+        float lat[x,y]   
+            standard_name: latitude
+            long_name: latitude
+            units: degrees_north
+        float lon[x,y]   
+            standard_name: longitude
+            long_name: longitude
+            units: degrees_east
+
+     4 dimensions:
+        nv  Size:2
+[1] "vobjtovarid4: **** WARNING **** I was asked to get a varid for dimension named nv BUT this dimension HAS NO DIMVAR! Code will probably fail at this point"
+        time  Size:6   *** is unlimited ***
+            calendar: standard
+            long_name: time
+            units: days since 2010-01-01 00:00:00 UTC
+            bounds: time_bnds
+            cell_methods: time: sum within years
+        y  Size:2900
+            units: m
+            long_name: y coordinate of projection
+            standard_name: projection_y_coordinate
+        x  Size:4648
+            units: m
+            long_name: x coordinate of projection
+            standard_name: projection_x_coordinate
+
+    5 global attributes:
+        institution: Oak Ridge National Laboratory (ORNL) Distributed Active Archive Center (DAAC)
+        references: Gurney, Kevin R., Jianming Liang, Risa Patarasuk, Yang Song, Jianhua Huang, and Geoffrey Roest (2019) The Vulcan Version 3.0 High-Resolution Fossil Fuel CO2 Emissions for the United States. Nature Scientific Data.
+        source: Dataset created at Nothern Arizona University in the research group of Prof. Kevin Gurney.
+        Conventions: CF-1.6
+        title: Vulcan version 3.0 Annual Fossil Fuel CO2 emissions total sector for the mean emissions bounds

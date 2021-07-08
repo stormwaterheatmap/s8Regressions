@@ -1,0 +1,109 @@
+
+```{r}
+library(tidync)
+require(sf)
+require(tidyverse)
+library(ncdfgeom)
+library(ncdf4) # package for netcdf manipulation
+library(raster) # package for raster manipulation
+library(rgdal) # package for geospatial analysis
+library(ggplot2) # package for plotting
+```
+
+```{r}
+type = "rail"
+
+file <- here::here('data-raw',paste0('Vulcan_v3_US_annual_1km_',type,'_mn.nc4'))
+
+co_data <- tidync(file)
+
+# ncdf4 -------------------------------------------------------------------
+
+
+nc_data <- nc_open(file)
+# # Save the print(nc) dump to a text file
+# {
+#   sink('vulcan_metadata.txt')
+#   print(nc_data)
+#   sink()
+# }
+# sumary <- summary(nc_data)
+# lon <- ncvar_get(nc_data, "lon")
+# lat <- ncvar_get(nc_data, "lat", verbose = F)
+# t <- ncvar_get(nc_data, "time")
+#co.array <- ncvar_get(nc_data, "carbon_emissions") # store the data in a 3-dimensional array
+cobrick = brick(file,varname = "carbon_emissions")
+costack<-stack(cobrick)
+
+
+
+domain <- st_read(here::here('data-raw','extent3.shp'))
+
+
+
+
+
+raster.sub <- crop(cobrick, extent(domain))
+
+
+
+library(tmap)
+tmap::tmap_mode("view")
+
+qtm(raster.sub)
+tm_shape(raster.sub)+tm_raster(palette = "Greens",style="kmeans")
+#writeRaster(costack, filename="costack.tif", format="GTiff",overwrite=TRUE)
+writeRaster(raster.sub, filename=here::here('data',paste0("Vulcan_",type,".tif")), format="GTiff",overwrite=TRUE)
+```
+
+```{r}
+tm_shape(raster.sub)+tm_raster(palette = "Greens",style="kmeans")
+
+```
+
+# raster ------------------------------------------------------------------
+rast <- raster(file,varname = "carbon_emissions")
+tmpin <- stack(file)
+nlayers(tmpin)
+
+print(co_data)
+
+d.slice <- co_data %>% hyper_filter(x = x >579000 & x < 1603056,
+
+                                                                        y = y >511000 & y <  1350425.0625)
+print(d.slice$grid)
+
+
+dim(d.slice[[1]])
+aa <- (d.slice[[6]])
+
+
+co_data_out <- d.slice %>% hyper_array()
+aa <- co_data_out$carbon_emissions
+
+aaa <- raster(aa)
+
+
+co_data_out <- d.slice %>% hyper_tibble()
+src_crs <- co_data %>% activate(carbon_emissions)
+crs.tib <- d.slice %>% hyper_tibble()
+
+#get geometry
+stack.nc = stack(file)
+brick.nc = brick(file)
+raster.nc <- raster(file)
+
+sla.df = raster::as.data.frame(raster.nc, xy = TRUE)
+xvals <- sla.df$x
+yvals <- sla.df$y
+plot(xvals,yvals)
+
+
+
+
+oisstfile <- system.file("nc/reduced.nc", package = "stars")
+oisst <- tidync(oisstfile)
+print(oisst)
+print(co_data)
+time_ex <- oisst %>% activate("D3") %>% hyper_array()
+(oisst_data <- oisst %>% hyper_array())

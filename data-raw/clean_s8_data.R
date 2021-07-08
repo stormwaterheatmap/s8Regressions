@@ -10,19 +10,13 @@
 library(tidyverse)
 
 
-all.S8.data <- read.csv("data/S8_data.csv", stringsAsFactors = FALSE)
+load("data/S8_data.rda")
 
 # get antecedant days
 library(readr)
-Antecedant_days <- read_csv("data/Antecedant_days.csv",
-    col_types = cols(ADD = col_number()),
-    na = "NA"
-  ) %>%
-  na.omit() %>%
-  dplyr::select(c(access_id, ADD))
+
 
 clean_data <- function(df) {
-
   # filter out rejected data
   filtered.df <- (filter(df, !result_data_qualifier %in% "REJ")) %>%
     # filter out replicates
@@ -66,8 +60,8 @@ select_columns <- function(df) {
       access_id,
       field_collection_end_date,
       field_collection_start_date,
-      type,
-      ADD
+      type
+      #ADD
     )
 
   # rename some columns
@@ -81,7 +75,9 @@ select_columns <- function(df) {
 select_params <- function(df) {
   # Parameters for this anlysis as a list:
   params <- c(
+    "Zinc - Water - Dissolved",
     "Zinc - Water - Total",
+    "Copper - Water - Dissolved",
     "Copper - Water - Total",
     "Nitrite-Nitrate - Water - Dissolved",
     "Lead - Water - Total",
@@ -89,16 +85,24 @@ select_params <- function(df) {
     "Total Suspended Solids - Water - Total",
     "Total Phthalate - Water - Total",
     "Total PAH - Water - Total",
-    "CPAH - Water - Total"
+    "CPAH - Water - Total",
+    "Cadmium - Water - Total",
+    "Cadmium - Water - Dissolved",
+    "Total Kjeldahl Nitrogen - Water - Total",
+    "Total Phosphorus - Water - Total",
+    "Ortho-phosphate - Water - Dissolved"
+
+
+
   )
   df <- df %>% dplyr::filter(parameter %in% params)
   return(df)
 }
 
-s8data <- all.S8.data %>%
+s8data <- s8_data %>%
   clean_data() %>%
   #add.antecedant.days() %>%
-  select_params()
-  #select_columns()
+  select_params() %>%
+  select_columns()
 
 

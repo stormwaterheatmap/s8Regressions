@@ -1,0 +1,158 @@
+---
+title: "Outfall Data- kMeans clusters"
+output: github_document
+always_allow_html: true
+params: 
+  coc: "Metals"
+---
+
+```{r include=FALSE, setup, include=FALSE}
+
+knitr::opts_chunk$set(echo=FALSE, 
+  comment = '', fig.width = 6, fig.height = 6
+)
+
+
+
+library(tidyverse)
+library(pastecs)
+library(factoextra)
+library(cluster)
+library(DataExplorer)
+library(tidymodels)
+library(caret)
+library(broom)
+library(knitr)
+library(kableExtra)
+library(gtsummary)
+load("~/GitHub/s8Regressions/data/s8_data.rda")
+
+
+ps <- s8_data$paramgroup %>% unique()
+
+```
+
+
+```{r eval=FALSE, include=FALSE}
+s8_data$paramgroup %>% unique()
+
+```
+
+```{r}
+library(rlist)
+s8_data<- s8_data %>% as.data.frame()
+study_names <- s8_data$study_name
+study_names_list <- s8_data$study_name %>% unique() %>% sort()
+
+study_id <- study_names_list %>%  as.factor() %>% as.numeric()
+types <- s8_data$type %>% unique()
+
+study_names_short <- c('sea','tac','clark','king','pierce','pos','pot','sno')
+
+
+lookup <- setNames(as.list(study_names_short), study_names_list)
+
+s8_data = s8_data %>% 
+  mutate(short_name =dplyr::recode(study_names, !!!lookup)) %>% 
+  mutate(site_name = paste(sep = "-",dplyr::recode(study_names, !!!lookup),type)) %>% 
+   filter(short_name != "clark") %>% 
+  filter(sample_matrix %in% c("water", "Water", "WATER")) %>% 
+   filter(paramgroup %in% c("Metal"))
+
+
+s8_data %>% select(c("site_name","parameter","new_result_value")) %>% 
+  pivot_wider(names_from = site_name, values_from= new_result_value, values_fn = length) %>%  kable() %>% kable_classic(full_width = F)
+  
+
+```
+
+
+
+```{r}
+short_names = unique(s8_data$short_name)
+site_names =  unique(s8_data$site_name)
+i = 1
+
+clus <- function(i) {
+  
+
+data.df <- s8_data %>% 
+  #Metal", "Nutrient","Conventional")) %>%  #Conventional","Nutrient")) %>% #Nutrient","Conventional")) %>%
+#filter(short_name ==short_names[i]) %>% 
+  filter(site_name ==site_names[i]) %>% 
+  filter(!parameter %in% c(
+    "Biochemical Oxygen Demand - Water - Total", 
+    #"Magnesium - Water - Dissolved", "Chloride - Water - Total",
+    "Total Suspended Solids - Water - Total","Conductivity - Water - Total","Turbidity - Water - Total",
+    "Ammonia - Water - Total",
+    "Mercury - Water - Total", "Mercury - Water - Dissolved", #"Arsenic - Water - Dissolved",
+    "Calcium - Water - Dissolved", "pH - Water - Total", "Calcium - Water - Total", "Hardness as CaCO3 - Water - Total" #"Magnesium - Water - Total"
+  )) %>%
+  filter(sample_matrix %in% c("water", "Water", "WATER")) %>%
+  mutate(loc_date = paste0(site_name, "_",field_collection_start_date)) %>%
+  pivot_wider(
+    names_from = loc_date, id_cols = parameter,
+    values_from = new_result_value,
+    values_fn = mean
+  ) %>%
+  remove_rownames() %>%
+  column_to_rownames("parameter") %>%
+  drop_na() %>%
+  t() %>%
+  as.data.frame() %>%
+  log() %>% 
+  scale(center = TRUE, scale = TRUE) %>% 
+  t() %>%
+  as.data.frame() 
+
+
+data.df2 <- data.df %>%
+  
+  mutate_all(function(x) as.numeric(as.character(x))) 
+
+
+
+
+# 
+km <- kmeans(data.df2, 3)
+# km <- fanny(data.df2)
+
+#return(fviz_nbclust(data.df2, kmeans, method = "silhouette"))
+
+ return(
+fviz_cluster(km,main = site_names[i],subtitle = paste("n =", ncol(data.df2)), data = data.df2,repel =TRUE,show.clust.cent = FALSE,ellipse.type = "confidence", ellipse.level = 0.90)
+)
+# # outplots[i] <- fviz_cluster(km.res1, data = data.df2,repel =TRUE,ellipse.type = "convex",show.clust.cent = FALSE)
+
+}
+
+
+```
+
+```{r}
+
+```
+
+```{r}
+#clus(1)
+clus(2)
+clus(3)
+clus(4)
+clus(5)
+#clus(6)
+clus(7)
+#clus(8)
+clus(9)
+clus(10)
+clus(11)
+#```
+#```{r}
+clus(12)
+clus(13)
+clus(14)
+#clus(15)
+#clus(16)
+#clus(17)
+#clus(18)
+#clus(19)
+```
