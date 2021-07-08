@@ -25,17 +25,14 @@ library(broom)
 library(knitr)
 library(kableExtra)
 library(gtsummary)
-```
+library(rlist)
 
-```{r}
+
 
 load("~/GitHub/s8Regressions/data/s8_data.rda")
 
 
 ps <- s8_data$paramgroup %>% unique()
-
-library(rlist)
-s8_data<- s8_data %>% as.data.frame()
 study_names <- s8_data$study_name
 study_names_list <- s8_data$study_name %>% unique() %>% sort()
 
@@ -47,29 +44,40 @@ study_names_short <- c('sea','tac','clark','king','pierce','pos','pot','sno')
 
 lookup <- setNames(as.list(study_names_short), study_names_list)
 
-s8_data <- s8_data %>% 
+
+```
+
+```{r}
+
+
+s8.data.df <- s8_data %>% 
   mutate(short_name =dplyr::recode(study_names, !!!lookup)) %>% 
   mutate(site_name = paste(sep = "-",dplyr::recode(study_names, !!!lookup),type)) %>% 
-   filter(short_name != "clark") %>% 
+   filter(!short_name %in% c("clark","pierce")) %>% 
   filter(sample_matrix %in% c("water", "Water", "WATER")) %>% 
    filter(paramgroup %in% c("Nutrient","Conventional")) %>% 
 filter(!parameter %in% c(
   "Cadmium - Water - Dissolved",
-    "Biochemical Oxygen Demand - Water - Total", 
-    "Magnesium - Water - Dissolved","Magnesium - Water - Total", "Chloride - Water - Total",
+     "Biochemical Oxygen Demand - Water - Total", 
+  "Cadmium - Water - Total",
+  "Lead - Water - Dissolved",
+    "Magnesium - Water - Dissolved","Magnesium - Water - Total",# "Chloride - Water - Total",
    # "Total Suspended Solids - Water - Total",
-   "Surfactants - Water - Total",
-   "Conductivity - Water - Total","Turbidity - Water - Total",
+   # "Surfactants - Water - Total",
+   # "Conductivity - Water - Total","Turbidity - Water - Total",
     "Ammonia - Water - Total",
     "Mercury - Water - Total", "Mercury - Water - Dissolved", "Arsenic - Water - Dissolved",
-    "Calcium - Water - Dissolved", "pH - Water - Total", "Calcium - Water - Total", "Hardness as CaCO3 - Water - Total" #"Magnesium - Water - Total"
+    "Calcium - Water - Dissolved", 
+  "pH - Water - Total", "Calcium - Water - Total", 
+  "Hardness as CaCO3 - Water - Total", 
+  "Magnesium - Water - Total"
     )) 
 
 
-s8_data %>% select(c("site_name","parameter","new_result_value")) %>% 
+s8.data.df %>% select(c("site_name","parameter","new_result_value")) %>% 
   pivot_wider(names_from = site_name, values_from= new_result_value, values_fn = length) %>%  kable(caption = "Number of sampling events") %>% kable_classic(full_width = F)
 
-s8_data %>% select(c("site_name","parameter","nondetect_flag","new_result_value")) %>% 
+s8.data.df %>% select(c("site_name","parameter","nondetect_flag","new_result_value")) %>% 
   mutate(nondetect = (nondetect_flag == TRUE) %>% as.numeric()) %>% 
   select(-c('nondetect_flag')) %>% 
   group_by(site_name,parameter) %>% summarise(percent = sum(nondetect)/length(new_result_value)) %>% 
@@ -88,14 +96,14 @@ s8_data %>% select(c("site_name","parameter","nondetect_flag","new_result_value"
 ```
 
 ```{r}
-short_names = unique(s8_data$short_name)
-site_names =  unique(s8_data$site_name)
+short_names = unique(s8.data.df$short_name)
+site_names =  unique(s8.data.df$site_name)
 i = 1
 
 clus <- function(i) {
   
 
-data.df <- s8_data %>% 
+data.df <- s8.data.df %>% 
   #Metal", "Nutrient","Conventional")) %>%  #Conventional","Nutrient")) %>% #Nutrient","Conventional")) %>%
 #filter(short_name ==short_names[i]) %>% 
   filter(site_name ==site_names[i]) %>% 

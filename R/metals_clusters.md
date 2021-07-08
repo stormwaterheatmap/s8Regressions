@@ -1,8 +1,6 @@
 Outfall Data- kMeans clusters
 ================
 
-    Warning: package 'rlist' was built under R version 4.0.5
-
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Number of sampling events
@@ -31,19 +29,16 @@ tac-COM
 pot-COM
 </th>
 <th style="text-align:right;">
-pierce-COM
-</th>
-<th style="text-align:right;">
 sno-LDR
 </th>
 <th style="text-align:right;">
 sno-HDR
 </th>
 <th style="text-align:right;">
-king-LDR
+king-HDR
 </th>
 <th style="text-align:right;">
-king-HDR
+king-LDR
 </th>
 <th style="text-align:right;">
 tac-HDR
@@ -53,12 +48,6 @@ king-COM
 </th>
 <th style="text-align:right;">
 tac-IND
-</th>
-<th style="text-align:right;">
-pierce-LDR
-</th>
-<th style="text-align:right;">
-pierce-HDR
 </th>
 <th style="text-align:right;">
 sno-COM
@@ -89,19 +78,16 @@ Total Suspended Solids - Water - Total
 33
 </td>
 <td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
 40
 </td>
 <td style="text-align:right;">
 33
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
 48
@@ -111,12 +97,6 @@ Total Suspended Solids - Water - Total
 </td>
 <td style="text-align:right;">
 30
-</td>
-<td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-15
 </td>
 <td style="text-align:right;">
 32
@@ -145,19 +125,16 @@ Copper - Water - Total
 33
 </td>
 <td style="text-align:right;">
-28
-</td>
-<td style="text-align:right;">
 46
 </td>
 <td style="text-align:right;">
 38
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
 51
@@ -169,13 +146,54 @@ Copper - Water - Total
 33
 </td>
 <td style="text-align:right;">
-23
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
 39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Turbidity - Water - Total
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+38
 </td>
 </tr>
 <tr>
@@ -201,19 +219,16 @@ Copper - Water - Dissolved
 33
 </td>
 <td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
 33
 </td>
 <td style="text-align:right;">
 27
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
 47
@@ -225,18 +240,12 @@ Copper - Water - Dissolved
 32
 </td>
 <td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
 33
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Cadmium - Water - Total
+Chloride - Water - Total
 </td>
 <td style="text-align:right;">
 34
@@ -245,7 +254,54 @@ Cadmium - Water - Total
 33
 </td>
 <td style="text-align:right;">
-33
+32
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Conductivity - Water - Total
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+32
 </td>
 <td style="text-align:right;">
 49
@@ -254,78 +310,19 @@ Cadmium - Water - Total
 42
 </td>
 <td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-22
+32
 </td>
 <td style="text-align:right;">
 46
 </td>
 <td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-52
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-39
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lead - Water - Dissolved
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-46
-</td>
-<td style="text-align:right;">
-42
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-40
-</td>
-<td style="text-align:right;">
-36
-</td>
-<td style="text-align:right;">
-30
+37
 </td>
 <td style="text-align:right;">
 21
+</td>
+<td style="text-align:right;">
+30
 </td>
 <td style="text-align:right;">
 52
@@ -334,16 +331,10 @@ Lead - Water - Dissolved
 31
 </td>
 <td style="text-align:right;">
-33
+34
 </td>
 <td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-37
+39
 </td>
 </tr>
 <tr>
@@ -369,19 +360,16 @@ Zinc - Water - Total
 33
 </td>
 <td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
 45
 </td>
 <td style="text-align:right;">
 36
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
 52
@@ -391,12 +379,6 @@ Zinc - Water - Total
 </td>
 <td style="text-align:right;">
 32
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-8
 </td>
 <td style="text-align:right;">
 37
@@ -425,19 +407,16 @@ Zinc - Water - Dissolved
 33
 </td>
 <td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
 39
 </td>
 <td style="text-align:right;">
 29
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
 52
@@ -449,13 +428,54 @@ Zinc - Water - Dissolved
 32
 </td>
 <td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
 37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hardness as CaCO3 - Water - Total
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+39
 </td>
 </tr>
 <tr>
@@ -481,19 +501,16 @@ Lead - Water - Total
 33
 </td>
 <td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
 46
 </td>
 <td style="text-align:right;">
 37
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
 51
@@ -503,12 +520,6 @@ Lead - Water - Total
 </td>
 <td style="text-align:right;">
 33
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-8
 </td>
 <td style="text-align:right;">
 39
@@ -550,15 +561,6 @@ king-HDR
 king-LDR
 </th>
 <th style="text-align:left;">
-pierce-COM
-</th>
-<th style="text-align:left;">
-pierce-HDR
-</th>
-<th style="text-align:left;">
-pierce-LDR
-</th>
-<th style="text-align:left;">
 pos-COM
 </th>
 <th style="text-align:left;">
@@ -596,16 +598,7 @@ tac-IND
 <tbody>
 <tr>
 <td style="text-align:left;">
-Cadmium - Water - Total
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-40%
-</td>
-<td style="text-align:left;">
-73%
+Chloride - Water - Total
 </td>
 <td style="text-align:left;">
 0%
@@ -617,34 +610,34 @@ Cadmium - Water - Total
 0%
 </td>
 <td style="text-align:left;">
-41%
-</td>
-<td style="text-align:left;">
-6%
-</td>
-<td style="text-align:left;">
-21%
-</td>
-<td style="text-align:left;">
-53%
-</td>
-<td style="text-align:left;">
-33%
-</td>
-<td style="text-align:left;">
-44%
-</td>
-<td style="text-align:left;">
-71%
-</td>
-<td style="text-align:left;">
-78%
+0%
 </td>
 <td style="text-align:left;">
 0%
 </td>
 <td style="text-align:left;">
-4%
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+5%
+</td>
+<td style="text-align:left;">
+22%
+</td>
+<td style="text-align:left;">
+2%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:left;">
 0%
@@ -652,7 +645,13 @@ Cadmium - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Copper - Water - Dissolved
+Conductivity - Water - Total
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:left;">
 0%
@@ -671,6 +670,38 @@ Copper - Water - Dissolved
 </td>
 <td style="text-align:left;">
 0%
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Copper - Water - Dissolved
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+3%
 </td>
 <td style="text-align:left;">
 2%
@@ -723,15 +754,6 @@ Copper - Water - Total
 0%
 </td>
 <td style="text-align:left;">
-7%
-</td>
-<td style="text-align:left;">
-17%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
 0%
 </td>
 <td style="text-align:left;">
@@ -760,76 +782,11 @@ NA%
 </td>
 <td style="text-align:left;">
 0%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Lead - Water - Dissolved
-</td>
-<td style="text-align:left;">
-3%
-</td>
-<td style="text-align:left;">
-29%
-</td>
-<td style="text-align:left;">
-57%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-20%
-</td>
-<td style="text-align:left;">
-3%
-</td>
-<td style="text-align:left;">
-27%
-</td>
-<td style="text-align:left;">
-59%
-</td>
-<td style="text-align:left;">
-55%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-39%
-</td>
-<td style="text-align:left;">
-45%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-10%
-</td>
-<td style="text-align:left;">
-12%
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Lead - Water - Total
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
 </td>
 <td style="text-align:left;">
 0%
@@ -891,15 +848,6 @@ Total Suspended Solids - Water - Total
 0%
 </td>
 <td style="text-align:left;">
-7%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
 0%
 </td>
 <td style="text-align:left;">
@@ -932,6 +880,53 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
+Turbidity - Water - Total
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Zinc - Water - Dissolved
 </td>
 <td style="text-align:left;">
@@ -942,15 +937,6 @@ Zinc - Water - Dissolved
 </td>
 <td style="text-align:left;">
 3%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-33%
 </td>
 <td style="text-align:left;">
 0%
@@ -1006,15 +992,6 @@ Zinc - Water - Total
 0%
 </td>
 <td style="text-align:left;">
-13%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
 0%
 </td>
 <td style="text-align:left;">
@@ -1042,47 +1019,222 @@ NA%
 0%
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+Hardness as CaCO3 - Water - Total
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+<td style="text-align:left;">
+0%
+</td>
+</tr>
 </tbody>
 </table>
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+    ### sea-COM
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    [1] "sea-HDR"
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $clusterPlot
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-6.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-7.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-8.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-9.png)<!-- -->
+    $pairsplot
+    NULL
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    [1] "sea-COM"
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-10.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $clusterPlot
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-11.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-4.png)<!-- -->
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-12.png)<!-- -->
+    $pairsplot
+    NULL
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    [1] "sea-IND"
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-13.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-14.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-15.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-5.png)<!-- -->
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $clusterPlot
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-3-16.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-3-17.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-6.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "pos-COM"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-8.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "tac-COM"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-9.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-10.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "pot-COM"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-11.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-12.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "sno-LDR"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-13.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-14.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "sno-HDR"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-15.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-16.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "king-HDR"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-17.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-18.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "king-LDR"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-19.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-20.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "tac-HDR"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-21.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-22.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "king-COM"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-23.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-24.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "tac-IND"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-25.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-26.png)<!-- -->
+
+
+    $pairsplot
+    NULL
+
+    [1] "sno-COM"
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-27.png)<!-- -->
+
+    $clusterPlot
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-28.png)<!-- -->
+
+
+    $pairsplot
+    NULL
