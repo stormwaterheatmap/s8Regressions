@@ -975,7 +975,7 @@ NA%
 </tbody>
 </table>
 
-![](metals_clusters_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](metals_clusters_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->![](metals_clusters_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
 
 <!-- ## All sites  -->
 <!-- ```{r fig.height=8, fig.width=8} -->

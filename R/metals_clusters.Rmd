@@ -118,11 +118,18 @@ data.df <- s8.data.df %>%
     as.data.frame() %>%
     drop_na()
     
-
+data.df2 <- data.df %>%
+    scale(center = TRUE, scale = TRUE) %>%
+    t() %>%
+    as.data.frame()
 
 
 
 psych::pairs.panels(data.df,pch=21,cex=0.8, main='all sites',density=FALSE,ellipses=FALSE,stars=TRUE,cex.cor=1)
+
+
+
+fviz_cluster(kmeans(data.df2,3), main = "all sites", subtitle = paste("n =", ncol(data.df2)), data = data.df2, repel = TRUE, show.clust.cent = FALSE, ellipse.type = "confidence", ellipse.level = 0.90)
 ```
 
 <!-- ## All sites  -->
