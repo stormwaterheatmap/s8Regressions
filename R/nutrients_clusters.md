@@ -1,4 +1,4 @@
-Outfall Data- kMeans clusters
+Nutrients - kMeans clusters
 ================
 
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -29,16 +29,7 @@ tac-COM
 sno-LDR
 </th>
 <th style="text-align:right;">
-pot-COM
-</th>
-<th style="text-align:right;">
-king-HDR
-</th>
-<th style="text-align:right;">
 king-LDR
-</th>
-<th style="text-align:right;">
-tac-HDR
 </th>
 <th style="text-align:right;">
 sno-HDR
@@ -50,14 +41,23 @@ tac-IND
 king-COM
 </th>
 <th style="text-align:right;">
+pot-COM
+</th>
+<th style="text-align:right;">
 sno-COM
+</th>
+<th style="text-align:right;">
+tac-HDR
+</th>
+<th style="text-align:right;">
+king-HDR
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Total Suspended Solids - Water - Total
+Total Suspended Solids.Total
 </td>
 <td style="text-align:right;">
 34
@@ -78,16 +78,7 @@ Total Suspended Solids - Water - Total
 40
 </td>
 <td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
 30
-</td>
-<td style="text-align:right;">
-48
 </td>
 <td style="text-align:right;">
 33
@@ -99,12 +90,21 @@ Total Suspended Solids - Water - Total
 31
 </td>
 <td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
 32
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Nitrite-Nitrate - Water - Dissolved
+Nitrite-Nitrate.Dissolved
 </td>
 <td style="text-align:right;">
 34
@@ -125,16 +125,7 @@ Nitrite-Nitrate - Water - Dissolved
 46
 </td>
 <td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
 30
-</td>
-<td style="text-align:right;">
-42
 </td>
 <td style="text-align:right;">
 37
@@ -146,59 +137,21 @@ Nitrite-Nitrate - Water - Dissolved
 31
 </td>
 <td style="text-align:right;">
-38
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Turbidity - Water - Total
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-49
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-44
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-37
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
 31
 </td>
 <td style="text-align:right;">
 38
 </td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+21
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Chloride - Water - Total
+Chloride.Total
 </td>
 <td style="text-align:right;">
 34
@@ -219,16 +172,7 @@ Chloride - Water - Total
 45
 </td>
 <td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
 28
-</td>
-<td style="text-align:right;">
-35
 </td>
 <td style="text-align:right;">
 37
@@ -240,12 +184,21 @@ Chloride - Water - Total
 31
 </td>
 <td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
 37
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+20
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Conductivity - Water - Total
+Conductivity.Total
 </td>
 <td style="text-align:right;">
 34
@@ -266,16 +219,7 @@ Conductivity - Water - Total
 46
 </td>
 <td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
 30
-</td>
-<td style="text-align:right;">
-52
 </td>
 <td style="text-align:right;">
 37
@@ -287,12 +231,21 @@ Conductivity - Water - Total
 31
 </td>
 <td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
 39
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Total Kjeldahl Nitrogen - Water - Total
+Total Kjeldahl Nitrogen.Total
 </td>
 <td style="text-align:right;">
 34
@@ -316,15 +269,6 @@ Total Kjeldahl Nitrogen - Water - Total
 30
 </td>
 <td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-42
-</td>
-<td style="text-align:right;">
 34
 </td>
 <td style="text-align:right;">
@@ -334,12 +278,21 @@ Total Kjeldahl Nitrogen - Water - Total
 31
 </td>
 <td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
 34
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Surfactants - Water - Total
+Hardness as CaCO3.Total
 </td>
 <td style="text-align:right;">
 34
@@ -348,45 +301,45 @@ Surfactants - Water - Total
 32
 </td>
 <td style="text-align:right;">
-49
+10
 </td>
 <td style="text-align:right;">
 33
 </td>
 <td style="text-align:right;">
-31
+42
 </td>
 <td style="text-align:right;">
-44
+46
 </td>
 <td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-44
+NA
 </td>
 <td style="text-align:right;">
 38
 </td>
 <td style="text-align:right;">
-24
+33
 </td>
 <td style="text-align:right;">
-29
+NA
+</td>
+<td style="text-align:right;">
+NA
 </td>
 <td style="text-align:right;">
 39
 </td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+NA
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Total Phosphorus - Water - Total
+Total Phosphorus.Total
 </td>
 <td style="text-align:right;">
 34
@@ -410,15 +363,6 @@ Total Phosphorus - Water - Total
 29
 </td>
 <td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-40
-</td>
-<td style="text-align:right;">
 37
 </td>
 <td style="text-align:right;">
@@ -428,12 +372,21 @@ Total Phosphorus - Water - Total
 31
 </td>
 <td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
 39
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Ortho-phosphate - Water - Dissolved
+Ortho-phosphate.Dissolved
 </td>
 <td style="text-align:right;">
 34
@@ -454,16 +407,7 @@ Ortho-phosphate - Water - Dissolved
 45
 </td>
 <td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
 30
-</td>
-<td style="text-align:right;">
-44
 </td>
 <td style="text-align:right;">
 37
@@ -475,7 +419,16 @@ Ortho-phosphate - Water - Dissolved
 31
 </td>
 <td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
 39
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 </tbody>
@@ -551,7 +504,7 @@ tac-IND
 <tbody>
 <tr>
 <td style="text-align:left;">
-Chloride - Water - Total
+Chloride.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -598,7 +551,7 @@ Chloride - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Conductivity - Water - Total
+Conductivity.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -645,7 +598,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Nitrite-Nitrate - Water - Dissolved
+Nitrite-Nitrate.Dissolved
 </td>
 <td style="text-align:left;">
 0%
@@ -692,7 +645,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Ortho-phosphate - Water - Dissolved
+Ortho-phosphate.Dissolved
 </td>
 <td style="text-align:left;">
 3%
@@ -739,54 +692,7 @@ Ortho-phosphate - Water - Dissolved
 </tr>
 <tr>
 <td style="text-align:left;">
-Surfactants - Water - Total
-</td>
-<td style="text-align:left;">
-34%
-</td>
-<td style="text-align:left;">
-57%
-</td>
-<td style="text-align:left;">
-62%
-</td>
-<td style="text-align:left;">
-29%
-</td>
-<td style="text-align:left;">
-6%
-</td>
-<td style="text-align:left;">
-27%
-</td>
-<td style="text-align:left;">
-62%
-</td>
-<td style="text-align:left;">
-44%
-</td>
-<td style="text-align:left;">
-36%
-</td>
-<td style="text-align:left;">
-58%
-</td>
-<td style="text-align:left;">
-86%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-5%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Total Kjeldahl Nitrogen - Water - Total
+Total Kjeldahl Nitrogen.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -833,7 +739,7 @@ Total Kjeldahl Nitrogen - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Total Phosphorus - Water - Total
+Total Phosphorus.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -880,7 +786,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Total Suspended Solids - Water - Total
+Total Suspended Solids.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -927,22 +833,22 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Turbidity - Water - Total
+Hardness as CaCO3.Total
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+NA%
+</td>
+<td style="text-align:left;">
+NA%
 </td>
 <td style="text-align:left;">
 0%
 </td>
 <td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
+NA%
 </td>
 <td style="text-align:left;">
 0%
@@ -975,18 +881,166 @@ Turbidity - Water - Total
 </tbody>
 </table>
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+<!-- ## All sites  -->
+<!-- ```{r fig.height=8, fig.width=8} -->
+<!-- all.sites <-  -->
+<!-- s8.data.df %>%  -->
+<!--   mutate(loc_date = paste0(site_name, "_",field_collection_start_date)) %>% -->
+<!--   pivot_wider( -->
+<!--     names_from = loc_date, id_cols = parameter, -->
+<!--     values_from = new_result_value, -->
+<!--     values_fn = mean -->
+<!--   ) %>% -->
+<!--   remove_rownames() %>% -->
+<!--   column_to_rownames("parameter") %>% -->
+<!--   log() %>%  -->
+<!--   t() %>% -->
+<!--   as.data.frame() %>% -->
+<!--   drop_na() %>% -->
+<!--   scale(center = TRUE, scale = TRUE) %>%  -->
+<!--   t() %>% -->
+<!--   as.data.frame()  -->
+<!-- all.sites.t <- all.sites %>% t() %>% as.data.frame() %>% pivot_longer(cols = everything()) -->
+<!-- km <- kmeans(all.sites, 3) -->
+<!-- km$cluster %>% as.data.frame() -->
+<!-- all.sites.t %>% left_join(km$cluster %>% as.data.frame()) -->
+<!-- #fviz_nbclust(all.sites, kmeans, k.max =9) -->
+<!-- ggpairs(all.sites %>% t(), col=c(1:4)[km$cluster]) -->
+<!-- fviz_cluster(main = "All Sites", kmeans(all.sites, 4),data = all.sites,repel =TRUE,show.clust.cent = FALSE,ellipse.type = "confidence", ellipse.level = 0.9) -->
+<!-- ``` -->
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
 
     Warning: Computation failed in `stat_conf_ellipse()`:
     missing value where TRUE/FALSE needed
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-4.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-5.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
 
     Warning: Computation failed in `stat_conf_ellipse()`:
     missing value where TRUE/FALSE needed
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-4.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-5.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-6.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-6.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->
 
-    Error in do_one(nmeth) : NA/NaN/Inf in foreign function call (arg 1)
+    $plot1
+    NULL
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-7.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-8.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-9.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-10.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-11.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-12.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-3-13.png)<!-- -->
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-8.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-9.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-10.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-11.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-12.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-13.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-14.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-15.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-16.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-17.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-18.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-19.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-20.png)<!-- -->
+
+
+    Error in sample.int(m, k) : 
+      cannot take a sample larger than the population when 'replace = FALSE'
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-21.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-22.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-23.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-24.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-25.png)<!-- -->
+
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-26.png)<!-- -->

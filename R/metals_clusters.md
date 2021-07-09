@@ -1,4 +1,4 @@
-Outfall Data- kMeans clusters
+Metals - kMeans clusters
 ================
 
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -35,10 +35,10 @@ sno-LDR
 sno-HDR
 </th>
 <th style="text-align:right;">
-king-HDR
+king-LDR
 </th>
 <th style="text-align:right;">
-king-LDR
+king-HDR
 </th>
 <th style="text-align:right;">
 tac-HDR
@@ -57,7 +57,7 @@ sno-COM
 <tbody>
 <tr>
 <td style="text-align:left;">
-Total Suspended Solids - Water - Total
+Total Suspended Solids.Total
 </td>
 <td style="text-align:right;">
 34
@@ -84,10 +84,10 @@ Total Suspended Solids - Water - Total
 33
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 48
@@ -104,7 +104,7 @@ Total Suspended Solids - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Copper - Water - Total
+Copper.Total
 </td>
 <td style="text-align:right;">
 34
@@ -131,10 +131,10 @@ Copper - Water - Total
 38
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 51
@@ -151,54 +151,7 @@ Copper - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Turbidity - Water - Total
-</td>
-<td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-49
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-44
-</td>
-<td style="text-align:right;">
-37
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-38
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Copper - Water - Dissolved
+Copper.Dissolved
 </td>
 <td style="text-align:right;">
 34
@@ -225,10 +178,10 @@ Copper - Water - Dissolved
 27
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 47
@@ -245,7 +198,7 @@ Copper - Water - Dissolved
 </tr>
 <tr>
 <td style="text-align:left;">
-Chloride - Water - Total
+Chloride.Total
 </td>
 <td style="text-align:right;">
 34
@@ -272,10 +225,10 @@ Chloride - Water - Total
 37
 </td>
 <td style="text-align:right;">
-20
+28
 </td>
 <td style="text-align:right;">
-28
+20
 </td>
 <td style="text-align:right;">
 35
@@ -292,7 +245,7 @@ Chloride - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Conductivity - Water - Total
+Conductivity.Total
 </td>
 <td style="text-align:right;">
 34
@@ -319,10 +272,10 @@ Conductivity - Water - Total
 37
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 52
@@ -339,7 +292,7 @@ Conductivity - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Zinc - Water - Total
+Zinc.Total
 </td>
 <td style="text-align:right;">
 34
@@ -366,10 +319,10 @@ Zinc - Water - Total
 36
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 52
@@ -386,7 +339,7 @@ Zinc - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Zinc - Water - Dissolved
+Zinc.Dissolved
 </td>
 <td style="text-align:right;">
 34
@@ -413,10 +366,10 @@ Zinc - Water - Dissolved
 29
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 52
@@ -433,7 +386,7 @@ Zinc - Water - Dissolved
 </tr>
 <tr>
 <td style="text-align:left;">
-Hardness as CaCO3 - Water - Total
+Hardness as CaCO3.Total
 </td>
 <td style="text-align:right;">
 34
@@ -480,7 +433,7 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
-Lead - Water - Total
+Lead.Total
 </td>
 <td style="text-align:right;">
 34
@@ -507,10 +460,10 @@ Lead - Water - Total
 37
 </td>
 <td style="text-align:right;">
-21
+30
 </td>
 <td style="text-align:right;">
-30
+21
 </td>
 <td style="text-align:right;">
 51
@@ -598,7 +551,7 @@ tac-IND
 <tbody>
 <tr>
 <td style="text-align:left;">
-Chloride - Water - Total
+Chloride.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -645,7 +598,7 @@ Chloride - Water - Total
 </tr>
 <tr>
 <td style="text-align:left;">
-Conductivity - Water - Total
+Conductivity.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -692,7 +645,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Copper - Water - Dissolved
+Copper.Dissolved
 </td>
 <td style="text-align:left;">
 0%
@@ -739,7 +692,7 @@ Copper - Water - Dissolved
 </tr>
 <tr>
 <td style="text-align:left;">
-Copper - Water - Total
+Copper.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -786,7 +739,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Lead - Water - Total
+Lead.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -833,7 +786,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Total Suspended Solids - Water - Total
+Total Suspended Solids.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -880,54 +833,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Turbidity - Water - Total
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Zinc - Water - Dissolved
+Zinc.Dissolved
 </td>
 <td style="text-align:left;">
 0%
@@ -974,7 +880,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Zinc - Water - Total
+Zinc.Total
 </td>
 <td style="text-align:left;">
 0%
@@ -1021,7 +927,7 @@ NA%
 </tr>
 <tr>
 <td style="text-align:left;">
-Hardness as CaCO3 - Water - Total
+Hardness as CaCO3.Total
 </td>
 <td style="text-align:left;">
 NA%
@@ -1069,172 +975,151 @@ NA%
 </tbody>
 </table>
 
-    ### sea-COM
+![](metals_clusters_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-    [1] "sea-HDR"
+<!-- ## All sites  -->
+<!-- ```{r fig.height=8, fig.width=8} -->
+<!-- all.sites <-  -->
+<!-- s8.data.df %>%  -->
+<!--   mutate(loc_date = paste0(site_name, "_",field_collection_start_date)) %>% -->
+<!--   pivot_wider( -->
+<!--     names_from = loc_date, id_cols = parameter, -->
+<!--     values_from = new_result_value, -->
+<!--     values_fn = mean -->
+<!--   ) %>% -->
+<!--   remove_rownames() %>% -->
+<!--   column_to_rownames("parameter") %>% -->
+<!--   log() %>%  -->
+<!--   t() %>% -->
+<!--   as.data.frame() %>% -->
+<!--   drop_na() %>% -->
+<!--   scale(center = TRUE, scale = TRUE) %>%  -->
+<!--   t() %>% -->
+<!--   as.data.frame()  -->
+<!-- all.sites.t <- all.sites %>% t() %>% as.data.frame() %>% pivot_longer(cols = everything()) -->
+<!-- km <- kmeans(all.sites, 3) -->
+<!-- km$cluster %>% as.data.frame() -->
+<!-- all.sites.t %>% left_join(km$cluster %>% as.data.frame()) -->
+<!-- #fviz_nbclust(all.sites, kmeans, k.max =9) -->
+<!-- ggpairs(all.sites %>% t(), col=c(1:4)[km$cluster]) -->
+<!-- fviz_cluster(main = "All Sites", kmeans(all.sites, 4),data = all.sites,repel =TRUE,show.clust.cent = FALSE,ellipse.type = "confidence", ellipse.level = 0.9) -->
+<!-- ``` -->
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "sea-COM"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-4.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "sea-IND"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-5.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-6.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "pos-COM"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->
 
-    $clusterPlot
-
-![](metals_clusters_files/figure-gfm/unnamed-chunk-4-8.png)<!-- -->
-
-
-    $pairsplot
+    $plot1
     NULL
 
-    [1] "tac-COM"
+    $plot2
 
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
+
+![](metals_clusters_files/figure-gfm/unnamed-chunk-4-8.png)<!-- -->
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-9.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-10.png)<!-- -->
 
 
-    $pairsplot
-    NULL
-
-    [1] "pot-COM"
+    Error in sample.int(m, k) : 
+      cannot take a sample larger than the population when 'replace = FALSE'
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-11.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-12.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "sno-LDR"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-13.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-14.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "sno-HDR"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-15.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-16.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "king-HDR"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-17.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-18.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "king-LDR"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-19.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-20.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "tac-HDR"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-21.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-22.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "king-COM"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-23.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
+
+    Warning: Computation failed in `stat_conf_ellipse()`:
+    missing value where TRUE/FALSE needed
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-24.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "tac-IND"
-
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-25.png)<!-- -->
 
-    $clusterPlot
+    $plot1
+    NULL
+
+    $plot2
 
 ![](metals_clusters_files/figure-gfm/unnamed-chunk-4-26.png)<!-- -->
-
-
-    $pairsplot
-    NULL
-
-    [1] "sno-COM"
-
-![](metals_clusters_files/figure-gfm/unnamed-chunk-4-27.png)<!-- -->
-
-    $clusterPlot
-
-![](metals_clusters_files/figure-gfm/unnamed-chunk-4-28.png)<!-- -->
-
-
-    $pairsplot
-    NULL
