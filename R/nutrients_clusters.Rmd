@@ -1,14 +1,14 @@
 ---
-title: "Outfall Data- kMeans clusters"
+title: "kMeans clusters, Nutrients"
 output: github_document
 always_allow_html: true
-params: 
+params:
   coc: "Metals"
 ---
 
 ```{r include=FALSE, setup, include=FALSE}
 
-knitr::opts_chunk$set(echo=FALSE, 
+knitr::opts_chunk$set(echo=FALSE,
   comment = '', fig.width = 6, fig.height = 6
 )
 
@@ -28,7 +28,7 @@ library(gtsummary)
 library(rlist)
 
 
-
+load_and_clean <- function(paramgroups){
 load("~/GitHub/s8Regressions/data/s8_data.rda")
 
 
@@ -45,84 +45,154 @@ study_names_short <- c('sea','tac','clark','king','pierce','pos','pot','sno')
 lookup <- setNames(as.list(study_names_short), study_names_list)
 
 
+s8.data.df <- s8_data %>%
+  mutate(short_name = dplyr::recode(study_names, !!!lookup)) %>%
+  mutate(site_name = paste(sep = "-", dplyr::recode(study_names, !!!lookup), type)) %>%
+  filter(!short_name %in% c("clark")) %>%
+  filter(!site_name %in% c("pierce-HDR", "pierce-LDR")) %>%
+  filter(sample_matrix %in% c("water", "Water", "WATER")) %>%
+  filter(sample_replicate_flag != "Y") %>%
+  filter(paramgroup %in% paramgroups) %>%
+  filter(!parameter %in% c(
+    "Cadmium - Water - Dissolved",
+    "Biochemical Oxygen Demand - Water - Total",
+    "Cadmium - Water - Total",
+    "Lead - Water - Dissolved",
+    "Magnesium - Water - Dissolved",
+    "Magnesium - Water - Total",
+    # "Chloride - Water - Total",
+    # "Total Suspended Solids - Water - Total",
+    "Surfactants - Water - Total",
+    # "Conductivity - Water - Total",
+    "Turbidity - Water - Total",
+    "Ammonia - Water - Total",
+    "Mercury - Water - Total", 
+    "Mercury - Water - Dissolved", 
+    "Arsenic - Water - Dissolved",
+    "Calcium - Water - Dissolved",
+    "pH - Water - Total", 
+    "Calcium - Water - Total", 
+    "Gasoline Range Organics - Water - Total",
+    "BTEX - Water - Total",
+    "p-Cresol - Water - Total",
+    "Phenol - Water - Total",
+     "Hardness as CaCO3 - Water - Total"
+    # "Magnesium - Water - Total" %>%
+  )) %>%  
+  # remove outliers
+  group_by(parameter) %>%
+  filter(!((log(new_result_value) - median(log(new_result_value))) > 3 * sd(log(new_result_value)))) %>% ungroup()
+
+
+}
+kable_events <- function(df){
+df %>%
+  select(c("site_name", "parameter", "paramgroup", "new_result_value")) %>%
+  pivot_wider(names_from = site_name, values_from = new_result_value, values_fn = length) %>%
+  kable(caption = "Number of sampling events") %>%
+  kable_classic(full_width = F)
+}
+
+kable_nds <- function(df){
+
+df %>%
+  select(c("site_name", "parameter", "paramgroup", "nondetect_flag", "new_result_value")) %>%
+  mutate(nondetect = (nondetect_flag == TRUE) %>% as.numeric()) %>%
+  select(-c("nondetect_flag")) %>%
+  # group_by(site_name, parameter) %>%
+  # summarise(percent = sum(nondetect) / length(new_result_value)) %>%
+  # ungroup() %>%
+  pivot_wider(id_cols = c(parameter,paramgroup), values_from = c(nondetect), names_from = site_name,values_fn = sum) %>%
+  # mutate_if(is.numeric, funs(paste0(round(., 2) * 100, "%"))) %>%
+  kable(caption = "percent-nondetects summary") %>%
+  kable_classic(html_font = "serif", full_width = T)
+  }
+
 ```
 
 ```{r}
 
+s8.data.df <- load_and_clean(paramgroups = c("Conventional", "Nutrient"))#,"Metal"))
+kable_events(s8.data.df)
+kable_nds(s8.data.df)
+```
 
-s8.data.df <- s8_data %>% 
-  mutate(short_name =dplyr::recode(study_names, !!!lookup)) %>% 
-  mutate(site_name = paste(sep = "-",dplyr::recode(study_names, !!!lookup),type)) %>% 
-   filter(!short_name %in% c("clark","pierce")) %>% 
-  filter(sample_matrix %in% c("water", "Water", "WATER")) %>% 
-   filter(paramgroup %in% c("Nutrient","Conventional")) %>% 
-filter(!parameter %in% c(
-  "Cadmium - Water - Dissolved",
-     "Biochemical Oxygen Demand - Water - Total", 
-  "Cadmium - Water - Total",
-  "Lead - Water - Dissolved",
-    "Magnesium - Water - Dissolved","Magnesium - Water - Total",# "Chloride - Water - Total",
-   # "Total Suspended Solids - Water - Total",
-    "Surfactants - Water - Total",
-   # "Conductivity - Water - Total","Turbidity - Water - Total",
-    "Ammonia - Water - Total",
-    "Mercury - Water - Total", "Mercury - Water - Dissolved", "Arsenic - Water - Dissolved",
-    "Calcium - Water - Dissolved", 
-  "pH - Water - Total", "Calcium - Water - Total", 
-  "Hardness as CaCO3 - Water - Total", 
-  "Magnesium - Water - Total"
-    )) 
+```{r fig.height=8, fig.width=8}
 
+df.by_site <- s8.data.df %>%
+  #add column of location-event specific ids 
+    mutate(loc_date = paste0(site_name, "_", field_collection_start_date), 
+           log_c = log(new_result_value)) %>%
+    #pivot to one row per parameter  
+  pivot_wider(
+      names_from = loc_date, id_cols = parameter,
+      values_from = log_c,
+      values_fn = mean
+    ) %>%  mutate(parameter = stringr::str_replace(parameter, " - Water - ", ".")) %>%
+  #make rownames for each parameter  
+  remove_rownames() %>%
+    column_to_rownames("parameter") %>%
+    #scale() %>% 
+    t() %>%
+    as.data.frame() %>%
+   # mutate(total_N =`Total Kjeldahl Nitrogen.Total`+`Nitrite-Nitrate.Dissolved` ) %>% log() %>% 
+    drop_na() %>% scale() %>% as.data.frame() 
 
-s8.data.df %>% select(c("site_name","parameter","new_result_value")) %>% 
-  pivot_wider(names_from = site_name, values_from= new_result_value, values_fn = length) %>%  kable(caption = "Number of sampling events") %>% kable_classic(full_width = F)
-
-s8.data.df %>% select(c("site_name","parameter","nondetect_flag","new_result_value")) %>% 
-  mutate(nondetect = (nondetect_flag == TRUE) %>% as.numeric()) %>% 
-  select(-c('nondetect_flag')) %>% 
-  group_by(site_name,parameter) %>% summarise(percent = sum(nondetect)/length(new_result_value)) %>% 
-  ungroup() %>% 
-  pivot_wider(id_cols =  parameter, values_from = c(percent),names_from = site_name) %>% 
-
-  
-   mutate_if(is.numeric,funs(paste0(round(.,2)*100,"%" ))) %>% 
-#,values_from = c(n,percent)) %>% 
-  #arrange(desc(`king-COM`)) %>% 
-  #add_column(after = 1, colSums(everything())) %>% 
-  kable(caption = "percent-nondetects summary") %>% 
-  kable_classic(html_font = 'serif', full_width = T)
+df.by_param <- s8.data.df %>%
+  #add column of location-event specific ids 
+    mutate(loc_date = paste0(site_name, "_", field_collection_start_date), 
+           log_c = log(new_result_value)) %>%
+    #pivot to one row per parameter  
+  pivot_wider(
+      names_from = loc_date, id_cols = parameter,
+      values_from = log_c,
+      values_fn = mean
+    ) %>%  mutate(parameter = stringr::str_replace(parameter, " - Water - ", ".")) %>%
+  #make rownames for each parameter  
+  remove_rownames() %>%
+    column_to_rownames("parameter") %>%
+    #scale() %>% 
+    t() %>%
+    as.data.frame() %>%
+    #mutate(total_N =`Total Kjeldahl Nitrogen.Total`+`Nitrite-Nitrate.Dissolved` ) %>% log() %>% 
+    drop_na() %>% scale() %>% t() %>% as.data.frame()
 
 
 ```
 
 ```{r fig.height=8, fig.width=8}
 
-data.df <- s8.data.df %>%
-    mutate(loc_date = paste0(site_name, "_", field_collection_start_date)) %>%
-    pivot_wider(
-      names_from = loc_date, id_cols = parameter,
-      values_from = new_result_value,
-      values_fn = mean
-    ) %>%
-    remove_rownames() %>%
-    column_to_rownames("parameter") %>%
-    log() %>%
-    t() %>%
-    as.data.frame() %>%
-    drop_na()
-    
-data.df2 <- data.df %>%
-    scale(center = TRUE, scale = TRUE) %>%
-    t() %>%
-    as.data.frame()
+#plot all sites
 
-
-
-psych::pairs.panels(data.df,pch=21,cex=0.8, main='all sites',density=FALSE,ellipses=FALSE,stars=TRUE,cex.cor=1)
-
-
-
-fviz_cluster(kmeans(data.df2,3), main = "all sites", subtitle = paste("n =", ncol(data.df2)), data = data.df2, repel = TRUE, show.clust.cent = FALSE, ellipse.type = "confidence", ellipse.level = 0.90)
+# 
+# fviz_nbclust(data.df.pivot,kmeans)
+# fviz_cluster(,data.df.pivot,ellipse = TRUE,ellipse.type = "confidence",labelsize = 2)
+# 
+# 
+# cluster::kmeans(data.df.pivot,2)
+# data.df3 <- data.df.pivot %>%
+# 
+#    rownames_to_column('event') %>%
+#   #pivot_longer(cols = -c(cluster,event)) %>%
+#   add_column(site = stringr::str_sub(.$event, 1, 7))
+# 
+# all_event_clusters <- kmeans(data.df.pivot) %>% add_column(cluster =as.factor(.$cluster))
+# 
+# 
+# 
+# colors <- rainbow(2)[unclass(data.df3$cluster)]
+# psych::pairs.panels(data.df3 %>%
+#                       select(-c(cluster,event)) %>%
+#                       select(c(site,everything() )),
+#                       pch=21,cex=0.8,
+#                     main='all sites', density=FALSE,ellipses=FALSE,stars=TRUE,cex.cor=1,bg=colors)
+# 
+# data.df3.long <- data.df3 %>%
+#  # rownames_to_column('event') %>%
+#   pivot_longer(cols = -c(site,cluster,event))
+# 
+# ggplot(data.df3.long, aes(x = site, y = value))+geom_jitter(aes(color = cluster))
+  #add_column(site = stringr::str_sub(.$event, 1, 7))
 ```
 
 ```{r}
@@ -130,53 +200,79 @@ short_names = unique(s8.data.df$short_name)
 site_names =  unique(s8.data.df$site_name)
 i = 1
 
-clus <- function(i) {
-  
+clus <- function(sites.df,i,n) {
 
-data.df <- s8.data.df %>% 
-  #Metal", "Nutrient","Conventional")) %>%  #Conventional","Nutrient")) %>% #Nutrient","Conventional")) %>%
-#filter(short_name ==short_names[i]) %>% 
-  filter(site_name ==site_names[i]) %>% 
+if(i == "all"){
+               data.df <- sites.df
+               } else { 
+data.df <- sites.df %>%
+     filter(str_detect(rownames(sites.df), site_names[[i]])) %>%
+     scale() %>% as.data.frame()
+  }
+
+ title_label <- ifelse(i == "all", "All Sites", site_names[i])
  
-  mutate(loc_date = paste0(site_name, "_",field_collection_start_date)) %>%
-  pivot_wider(
-    names_from = loc_date, id_cols = parameter,
-    values_from = new_result_value,
-    values_fn = mean
-  ) %>%
-  remove_rownames() %>%
-  column_to_rownames("parameter") %>%
-  log() %>% 
-  t() %>%
-  as.data.frame() %>%
-  drop_na() %>%
-  scale(center = TRUE, scale = TRUE) %>% 
-  t() %>%
-  as.data.frame() 
+params.df <- data.df %>% t() %>% as.data.frame()
 
 
-# 
-km <- kmeans(data.df, 3)
-# km <- fanny(data.df2)
+clusters.df <- kmeans(params.df, n)
 
-#return(fviz_nbclust(data.df2, kmeans, method = "silhouette"))
+pairs.plot <- #plot(sites.df, col = clusters.df$cluster)
+  
+  psych::pairs.panels(data.df,col = clusters.df$cluster, main=title_label,method = 'spearman', lm = TRUE, density=FALSE,ellipses=FALSE,stars=TRUE)#cex.cor=1,
+                     
+  # return(fviz_nbclust(data.df2, kmeans, method = "silhouette"))
 
- return(
-fviz_cluster(km,main = site_names[i],subtitle = paste("n =", ncol(data.df)), data = data.df,repel =TRUE,show.clust.cent = FALSE,ellipse.type = "confidence", ellipse.level = 0.90)
-)
+  return(list(
+  #plot0 = fviz_nbclust(params.df,kmeans,k.max = 4), 
+    plot1 = pairs.plot,
+    plot2 =
+      fviz_cluster(clusters.df, main = title_label, subtitle = paste("n =", ncol(params.df), ", k = ",n), data = params.df, repel = TRUE, show.clust.cent = FALSE, ellipse.type = "confidence", ellipse.level = 0.90)
 # # outplots[i] <- fviz_cluster(km.res1, data = data.df2,repel =TRUE,ellipse.type = "convex",show.clust.cent = FALSE)
-
+))
 }
 
+
+
+```
+```{r}
+best_n <- function(sites.df,i){
+df <- sites.df %>%
+filter(str_detect(rownames(sites.df),site_names[[i]])) %>%
+scale() %>%
+t() %>% as.data.frame()
+return(
+fviz_nbclust(df,kmeans,k.max = 4) %>% .[['data']] %>% arrange(desc(y)) %>% .[1,'clusters'] %>% as.numeric()
+)
+}
+
+```
+
+# All Sites 
+
+```{r fig.height=9, fig.width=9, message=FALSE, warning=FALSE}
+
+#fviz_nbclust(df.by_site,kmeans)
+
+
+clus(df.by_site,i = "all",n = 2)
 
 ```
 
 
-```{r}
+
+```{r fig.height=9, fig.width=9, message=FALSE, warning=FALSE, figures-side, fig.show="hold", out.width="100%"}
 
 
-for (i in 1:length(site_names)){
   
-  try(print(clus(i),silent = TRUE))
+for (i in 1:length(site_names)){
+
+  try(print(
+    clus(sites.df = df.by_site,
+         i = i,
+         n = best_n(df.by_site,i)),
+    silent = TRUE))
 }
+
+
 ```

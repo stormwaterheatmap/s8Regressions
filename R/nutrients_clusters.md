@@ -1,4 +1,4 @@
-Outfall Data- kMeans clusters
+kMeans clusters, Nutrients
 ================
 
 <table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -9,6 +9,9 @@ Number of sampling events
 <tr>
 <th style="text-align:left;">
 parameter
+</th>
+<th style="text-align:left;">
+paramgroup
 </th>
 <th style="text-align:right;">
 sea-HDR
@@ -24,12 +27,6 @@ sea-COM
 </th>
 <th style="text-align:right;">
 tac-COM
-</th>
-<th style="text-align:right;">
-pot-COM
-</th>
-<th style="text-align:right;">
-king-HDR
 </th>
 <th style="text-align:right;">
 king-LDR
@@ -52,12 +49,21 @@ sno-COM
 <th style="text-align:right;">
 tac-HDR
 </th>
+<th style="text-align:right;">
+pierce-COM
+</th>
+<th style="text-align:right;">
+king-HDR
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
 Total Suspended Solids - Water - Total
+</td>
+<td style="text-align:left;">
+Conventional
 </td>
 <td style="text-align:right;">
 34
@@ -66,19 +72,13 @@ Total Suspended Solids - Water - Total
 32
 </td>
 <td style="text-align:right;">
-49
+46
 </td>
 <td style="text-align:right;">
 32
 </td>
 <td style="text-align:right;">
 38
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-21
 </td>
 <td style="text-align:right;">
 30
@@ -99,12 +99,21 @@ Total Suspended Solids - Water - Total
 32
 </td>
 <td style="text-align:right;">
-48
+32
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Nitrite-Nitrate - Water - Dissolved
+</td>
+<td style="text-align:left;">
+Nutrient
 </td>
 <td style="text-align:right;">
 34
@@ -113,19 +122,13 @@ Nitrite-Nitrate - Water - Dissolved
 32
 </td>
 <td style="text-align:right;">
-43
+40
 </td>
 <td style="text-align:right;">
 32
 </td>
 <td style="text-align:right;">
 24
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-21
 </td>
 <td style="text-align:right;">
 30
@@ -146,51 +149,10 @@ Nitrite-Nitrate - Water - Dissolved
 38
 </td>
 <td style="text-align:right;">
-42
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Turbidity - Water - Total
+30
 </td>
 <td style="text-align:right;">
-34
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-49
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-37
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-44
-</td>
-<td style="text-align:right;">
-31
-</td>
-<td style="text-align:right;">
-38
+8
 </td>
 <td style="text-align:right;">
 21
@@ -200,14 +162,17 @@ Turbidity - Water - Total
 <td style="text-align:left;">
 Chloride - Water - Total
 </td>
+<td style="text-align:left;">
+Conventional
+</td>
 <td style="text-align:right;">
-34
+33
 </td>
 <td style="text-align:right;">
 32
 </td>
 <td style="text-align:right;">
-49
+46
 </td>
 <td style="text-align:right;">
 33
@@ -216,36 +181,39 @@ Chloride - Water - Total
 23
 </td>
 <td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
 28
 </td>
 <td style="text-align:right;">
 37
 </td>
 <td style="text-align:right;">
-18
+17
 </td>
 <td style="text-align:right;">
 45
 </td>
 <td style="text-align:right;">
-31
+29
 </td>
 <td style="text-align:right;">
 37
 </td>
 <td style="text-align:right;">
-35
+25
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+20
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Conductivity - Water - Total
+</td>
+<td style="text-align:left;">
+Conventional
 </td>
 <td style="text-align:right;">
 34
@@ -254,7 +222,7 @@ Conductivity - Water - Total
 32
 </td>
 <td style="text-align:right;">
-49
+46
 </td>
 <td style="text-align:right;">
 32
@@ -263,37 +231,40 @@ Conductivity - Water - Total
 42
 </td>
 <td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
 30
 </td>
 <td style="text-align:right;">
 37
 </td>
 <td style="text-align:right;">
-34
+33
 </td>
 <td style="text-align:right;">
 46
 </td>
 <td style="text-align:right;">
-31
+30
 </td>
 <td style="text-align:right;">
 39
 </td>
 <td style="text-align:right;">
-52
+35
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Total Kjeldahl Nitrogen - Water - Total
 </td>
+<td style="text-align:left;">
+Nutrient
+</td>
 <td style="text-align:right;">
 34
 </td>
@@ -301,19 +272,13 @@ Total Kjeldahl Nitrogen - Water - Total
 32
 </td>
 <td style="text-align:right;">
-48
+45
 </td>
 <td style="text-align:right;">
-32
+31
 </td>
 <td style="text-align:right;">
 25
-</td>
-<td style="text-align:right;">
-30
-</td>
-<td style="text-align:right;">
-21
 </td>
 <td style="text-align:right;">
 30
@@ -331,16 +296,25 @@ Total Kjeldahl Nitrogen - Water - Total
 31
 </td>
 <td style="text-align:right;">
-34
+33
 </td>
 <td style="text-align:right;">
-42
+30
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Total Phosphorus - Water - Total
 </td>
+<td style="text-align:left;">
+Nutrient
+</td>
 <td style="text-align:right;">
 34
 </td>
@@ -348,19 +322,13 @@ Total Phosphorus - Water - Total
 32
 </td>
 <td style="text-align:right;">
-48
+45
 </td>
 <td style="text-align:right;">
 32
 </td>
 <td style="text-align:right;">
 22
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-21
 </td>
 <td style="text-align:right;">
 29
@@ -381,12 +349,21 @@ Total Phosphorus - Water - Total
 39
 </td>
 <td style="text-align:right;">
-40
+29
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
 Ortho-phosphate - Water - Dissolved
+</td>
+<td style="text-align:left;">
+Nutrient
 </td>
 <td style="text-align:right;">
 34
@@ -395,19 +372,13 @@ Ortho-phosphate - Water - Dissolved
 32
 </td>
 <td style="text-align:right;">
-42
+40
 </td>
 <td style="text-align:right;">
 32
 </td>
 <td style="text-align:right;">
 25
-</td>
-<td style="text-align:right;">
-29
-</td>
-<td style="text-align:right;">
-21
 </td>
 <td style="text-align:right;">
 30
@@ -428,26 +399,17 @@ Ortho-phosphate - Water - Dissolved
 39
 </td>
 <td style="text-align:right;">
-44
+31
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+21
 </td>
 </tr>
 </tbody>
 </table>
-
-    `summarise()` has grouped output by 'site_name'. You can override using the `.groups` argument.
-
-    Warning: `funs()` was deprecated in dplyr 0.8.0.
-    Please use a list of either functions or lambdas: 
-
-      # Simple named list: 
-      list(mean = mean, median = median)
-
-      # Auto named with `tibble::lst()`: 
-      tibble::lst(mean, median)
-
-      # Using lambdas
-      list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
-
 <table class=" lightable-classic" style="font-family: serif; margin-left: auto; margin-right: auto;">
 <caption>
 percent-nondetects summary
@@ -458,142 +420,101 @@ percent-nondetects summary
 parameter
 </th>
 <th style="text-align:left;">
-king-COM
+paramgroup
 </th>
-<th style="text-align:left;">
-king-HDR
-</th>
-<th style="text-align:left;">
-king-LDR
-</th>
-<th style="text-align:left;">
-pos-COM
-</th>
-<th style="text-align:left;">
-pot-COM
-</th>
-<th style="text-align:left;">
-sea-COM
-</th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 sea-HDR
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 sea-IND
 </th>
-<th style="text-align:left;">
-sno-COM
+<th style="text-align:right;">
+pos-COM
 </th>
-<th style="text-align:left;">
-sno-HDR
+<th style="text-align:right;">
+sea-COM
 </th>
-<th style="text-align:left;">
-sno-LDR
-</th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 tac-COM
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
+king-LDR
+</th>
+<th style="text-align:right;">
+sno-HDR
+</th>
+<th style="text-align:right;">
+tac-IND
+</th>
+<th style="text-align:right;">
+sno-LDR
+</th>
+<th style="text-align:right;">
+king-COM
+</th>
+<th style="text-align:right;">
+sno-COM
+</th>
+<th style="text-align:right;">
 tac-HDR
 </th>
-<th style="text-align:left;">
-tac-IND
+<th style="text-align:right;">
+pierce-COM
+</th>
+<th style="text-align:right;">
+king-HDR
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Chloride - Water - Total
+Total Suspended Solids - Water - Total
 </td>
 <td style="text-align:left;">
-0%
+Conventional
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+2
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-5%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-22%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-2%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Conductivity - Water - Total
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-3%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-NA%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
 </tr>
 <tr>
@@ -601,93 +522,149 @@ NA%
 Nitrite-Nitrate - Water - Dissolved
 </td>
 <td style="text-align:left;">
-0%
+Nutrient
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-51%
+<td style="text-align:right;">
+21
 </td>
-<td style="text-align:left;">
-3%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-NA%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-NA%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-NA%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Ortho-phosphate - Water - Dissolved
+Chloride - Water - Total
 </td>
 <td style="text-align:left;">
-3%
+Conventional
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Conductivity - Water - Total
 </td>
 <td style="text-align:left;">
-0%
+Conventional
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-14%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-10%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-3%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-26%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-41%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-4%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-4%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-5%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-14%
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
 </td>
 </tr>
 <tr>
@@ -695,46 +672,49 @@ Ortho-phosphate - Water - Dissolved
 Total Kjeldahl Nitrogen - Water - Total
 </td>
 <td style="text-align:left;">
-0%
+Nutrient
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-3%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-17%
+<td style="text-align:right;">
+8
 </td>
-<td style="text-align:left;">
-57%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+6
 </td>
-<td style="text-align:left;">
-6%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-18%
+<td style="text-align:right;">
+6
 </td>
-<td style="text-align:left;">
-14%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-4%
+<td style="text-align:right;">
+2
 </td>
-<td style="text-align:left;">
-2%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-5%
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
 </td>
 </tr>
 <tr>
@@ -742,174 +722,183 @@ Total Kjeldahl Nitrogen - Water - Total
 Total Phosphorus - Water - Total
 </td>
 <td style="text-align:left;">
-0%
+Nutrient
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-15%
+<td style="text-align:right;">
+6
 </td>
-<td style="text-align:left;">
-14%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-NA%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-NA%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+NA
 </td>
-<td style="text-align:left;">
-7%
+<td style="text-align:right;">
+2
 </td>
-<td style="text-align:left;">
-5%
+<td style="text-align:right;">
+0
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Total Suspended Solids - Water - Total
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-7%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-NA%
-</td>
-<td style="text-align:left;">
-NA%
-</td>
-<td style="text-align:left;">
-NA%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
-</td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Turbidity - Water - Total
+Ortho-phosphate - Water - Dissolved
 </td>
 <td style="text-align:left;">
-0%
+Nutrient
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+6
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+0
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+15
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+3
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+2
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+10
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
 </td>
-<td style="text-align:left;">
-0%
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
 </td>
 </tr>
 </tbody>
 </table>
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+# All Sites
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $plot1
+    NULL
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+    $plot2
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+![](nutrients_clusters_files/figure-gfm/unnamed-chunk-6-2.png)<!-- -->
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-3.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-4.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-5.png)<!-- -->
+    $plot1
+    NULL
 
-    Error in do_one(nmeth) : NA/NaN/Inf in foreign function call (arg 1)
+    $plot2
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-6.png)<!-- -->
+    $plot1
+    NULL
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $plot2
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-7.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-8.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-9.png)<!-- -->
+    $plot1
+    NULL
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $plot2
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-10.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-11.png)<!-- -->![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-12.png)<!-- -->
+    $plot1
+    NULL
 
-    Warning: Computation failed in `stat_conf_ellipse()`:
-    missing value where TRUE/FALSE needed
+    $plot2
 
-![](nutrients_clusters_files/figure-gfm/unnamed-chunk-4-13.png)<!-- -->
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+    $plot1
+    NULL
+
+    $plot2
+
+<img src="nutrients_clusters_files/figure-gfm/figures-side-1.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-2.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-3.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-4.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-5.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-6.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-7.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-8.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-9.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-10.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-11.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-12.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-13.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-14.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-15.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-16.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-17.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-18.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-19.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-20.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-21.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-22.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-23.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-24.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-25.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-26.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-27.png" width="100%" /><img src="nutrients_clusters_files/figure-gfm/figures-side-28.png" width="100%" />
