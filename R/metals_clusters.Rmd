@@ -111,7 +111,7 @@ df %>%
 
 ```{r}
 
-s8.data.df <- load_and_clean(paramgroups = c("Nutrient", "Metal"))#,"Metal"))
+s8.data.df <- load_and_clean(paramgroups = c("Conventional", "Metal"))#,"Metal"))
 kable_events(s8.data.df)
 kable_nds(s8.data.df)
 ```
